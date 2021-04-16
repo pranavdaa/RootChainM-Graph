@@ -1,0 +1,11 @@
+type ProxyOwnerUpdate @entity {
+  id: ID!
+  _new: Bytes! # address
+  _old: Bytes! # address
+}
+
+type ProxyUpdated @entity {
+  id: ID!
+  _new: Bytes! # address
+  _old: Bytes! # address
+}

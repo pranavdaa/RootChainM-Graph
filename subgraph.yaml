@@ -1,0 +1,26 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: RootChainManager
+    network: mainnet
+    source:
+      address: "0xA0c68C638235ee32657e8f720a23ceC1bFc77C77"
+      abi: RootChainManager
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.2
+      language: wasm/assemblyscript
+      entities:
+        - ProxyOwnerUpdate
+        - ProxyUpdated
+      abis:
+        - name: RootChainManager
+          file: ./abis/RootChainManager.json
+      eventHandlers:
+        - event: ProxyOwnerUpdate(address,address)
+          handler: handleProxyOwnerUpdate
+        - event: ProxyUpdated(indexed address,indexed address)
+          handler: handleProxyUpdated
+      file: ./src/mapping.ts
